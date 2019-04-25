@@ -11,6 +11,9 @@ int main()
 
 	MasterMindDigits numberToGuess;
 
+	bool checkValue = false;
+	bool checkMode = true;
+
 	char gameMode;
 	unsigned myDigits;
 	unsigned test;
@@ -22,72 +25,91 @@ int main()
 	cout << "Wilkommen bei MasterMindDigits!\n\nTest(0) oder Spielen(1)\n";
 	cin >> gameMode;	
 
-	switch (gameMode)
+	while (checkMode)
 	{
-	case '0':
-
-		cout << "Bitte geben sie eine Testzahl ein:\n";
-		cin >> numberToGuess;		
-
-		while (notCorrect)
+		if (gameMode == '0' || gameMode == '1')
 		{
-			cout << "\nVersuchen Sie die Zahl zu erraten (Zahl muss 4 Stellig und aus 1-6 bestehen):\n ";
-			cin >> myDigits;
+			checkValue = true;
+			checkMode = false;
+		}
+		else
+		{
+			cout << "Eingabe nicht gueltig, bitte wiederholen:\n";
+			cin >> gameMode;
+		}
+	}
 
-			if (myDigits <= 6666 && myDigits >= 1111)
-			{
-				cout << "Zahlen an richtigen Stellen: " << to_string(numberToGuess.locationRight(myDigits)) << endl;	
-				cout << "Sonst richtig: " << to_string(numberToGuess.locationWrong(myDigits)) << endl;
-				tstcount++;
+	while (checkValue)
+	{
+		switch (gameMode)
+		{
+		case '0':
 
-				if (numberToGuess.locationRight(myDigits) == 4)
-				{
-					cout << "Sie haben es in " << tstcount << " Versuchen geschafft.\n" << endl;
-					notCorrect = false;
-				}
-			}
-			else
+			cout << "Bitte geben sie eine Testzahl ein:\n";
+			cin >> numberToGuess;
+
+			while (notCorrect)
 			{
-				cout << "Zahl ungueltig, bitte erneut eingeben:\n";
+				cout << "\nVersuchen Sie die Zahl zu erraten (Zahl muss 4 Stellig und aus 1-6 bestehen):\n ";
 				cin >> myDigits;
 
-			}
-		}
-		break;
-
-
-	case '1':
-		cout << "Spiel Modus ausgewaehlt:\n";
-		numberToGuess.makeDigitsToGuess();
-
-		while (notCorrect)
-		{
-			cout << "\nVersuchen Sie die Zahl zu erraten (Zahl muss 4 Stellig und aus 1-6 bestehen):\n ";
-			cin >> play;
-			
-
-			if (play <= 6666 && play >= 1111)
-			{
-				cout << "Zahlen an richtigen Stellen: " << to_string(numberToGuess.locationRight(play)) << endl;
-				cout << "Sonst richtig: " << to_string(numberToGuess.locationWrong(play)) << endl;
-				playcount++;
-
-				if (numberToGuess.locationRight(play) == 4)
+				if (myDigits <= 6666 && myDigits >= 1111)
 				{
-					cout << "Sie haben es in " << playcount << " Versuchen geschafft." << endl;
-					notCorrect = false;
+					cout << "Zahlen an richtigen Stellen: " << to_string(numberToGuess.locationRight(myDigits)) << endl;
+					cout << "Sonst richtig: " << to_string(numberToGuess.locationWrong(myDigits)) << endl;
+					tstcount++;
+
+					if (numberToGuess.locationRight(myDigits) == 4)
+					{
+						cout << "Sie haben es in " << tstcount << " Versuchen geschafft.\n" << endl;
+						notCorrect = false;
+						checkValue = false;
+					}
+				}
+				else
+				{
+					cout << "Zahl ungueltig, bitte erneut eingeben:\n";
+					cin >> myDigits;
+
 				}
 			}
-			else
-			{
-				cout << "Zahl ungueltig, bitte erneut eingeben:\n";
-			}
-		}
-		break;
+			break;
 
-	default:
-		cout << "Ungueltige Eingabe!\n\nBitte 0 fur Test oder 1 fuer Spielen:\n";
-		cin >> gameMode;
-		break;
+
+		case '1':
+			cout << "Spiel Modus ausgewaehlt:\n";
+			numberToGuess.makeDigitsToGuess();
+
+			while (notCorrect)
+			{
+				cout << "\nVersuchen Sie die Zahl zu erraten (Zahl muss 4 Stellig und aus 1-6 bestehen):\n ";
+				cin >> play;
+
+
+				if (play <= 6666 && play >= 1111)
+				{
+					cout << "Zahlen an richtigen Stellen: " << to_string(numberToGuess.locationRight(play)) << endl;
+					cout << "Sonst richtig: " << to_string(numberToGuess.locationWrong(play)) << endl;
+					playcount++;
+
+					if (numberToGuess.locationRight(play) == 4)
+					{
+						cout << "Sie haben es in " << playcount << " Versuchen geschafft." << endl;
+						notCorrect = false;
+						checkValue = false;
+					}
+				}
+				else
+				{
+					cout << "Zahl ungueltig, bitte erneut eingeben:\n";
+				}
+			}
+			break;
+
+		default:
+			cout << "Ungueltige Eingabe!\n\nBitte 0 fur Test oder 1 fuer Spielen:\n";
+			cin >> gameMode;
+			break;
+		}
 	}
 }
