@@ -21,7 +21,7 @@ MasterMindDigits::MasterMindDigits(unsigned number)
 MasterMindDigits::MasterMindDigits(const MasterMindDigits &orig)
 	:digits(new unsigned[4]{ 0 })
 {
-	for (int i = 3; i >= 0; i--)		//r¸ckw‰rts, damit zahlen richtige reihenfolge haben in digits
+	for (int i = 3; i >= 0; i--)		//r√ºckw√§rts, damit zahlen richtige reihenfolge haben in digits
 	{
 		digits[i] = orig.digits[i];
 	}
@@ -69,7 +69,7 @@ unsigned MasterMindDigits::locationWrong(MasterMindDigits my) const
 		}
 	}
 
-	for (int i = 0; i < 4; i++)		//‰uﬂere schleife geht meine Zahlen durch
+	for (int i = 0; i < 4; i++)		//√§u√üere schleife geht meine Zahlen durch
 	{
 		for (int j = 0; j < 4; j++)		//innere schleife geht andere Zahlen durch
 		{
@@ -88,8 +88,8 @@ unsigned MasterMindDigits::locationWrong(MasterMindDigits my) const
 					}
 					if (correct)
 					{
-						counter++;						//nur wenn die Position noch nicht "genutzt" wurde z‰hle den counter hoch
-						alreadyConsideredInMy[i] = i;	//und f¸ge die Positionen in das jeweilige lokale array ein
+						counter++;						//nur wenn die Position noch nicht "genutzt" wurde z√§hle den counter hoch
+						alreadyConsideredInMy[i] = i;	//und f√ºge die Positionen in das jeweilige lokale array ein
 						alreadyConsideredInPc[j] = j;
 					}
 				}
@@ -104,19 +104,7 @@ unsigned MasterMindDigits::locationWrong(MasterMindDigits my) const
 	return counter;
 }
 
-MasterMindDigits::operator unsigned() const
-{
-	unsigned number = 0;
-	unsigned factor = 1;
-
-	for (int i = 3; i >= 0; i++)
-	{
-		number += digits[i] * factor;
-		factor *= 10;
-	}
-
-	return number;
-}
+//MasterMindDigits::operator unsigned() const{}    habe ich nicht verwendet 
 
 istream& operator>>(istream& in, MasterMindDigits& m)
 {
