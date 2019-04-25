@@ -20,14 +20,14 @@ int main()
 	int playcount = 0;
 
 	cout << "Wilkommen bei MasterMindDigits!\n\nTest(0) oder Spielen(1)\n";
-	cin >> gameMode;
+	cin >> gameMode;	
 
 	switch (gameMode)
 	{
 	case '0':
 
 		cout << "Bitte geben sie eine Testzahl ein:\n";
-		cin >> numberToGuess;
+		cin >> numberToGuess;		
 
 		while (notCorrect)
 		{
@@ -36,7 +36,7 @@ int main()
 
 			if (myDigits <= 6666 && myDigits >= 1111)
 			{
-				cout << "Zahlen an richtigen Stellen: " << to_string(numberToGuess.locationRight(myDigits)) << endl;
+				cout << "Zahlen an richtigen Stellen: " << to_string(numberToGuess.locationRight(myDigits)) << endl;	
 				cout << "Sonst richtig: " << to_string(numberToGuess.locationWrong(myDigits)) << endl;
 				tstcount++;
 
@@ -86,9 +86,8 @@ int main()
 		break;
 
 	default:
-		cout << "Ungueltige Eingabe!\n\nBitte geben sie\n0 fuer den Test Modus oder 1 fuer den Spiel Modus ein:\n";
+		cout << "Ungueltige Eingabe!\n\nBitte 0 fur Test oder 1 fuer Spielen:\n";
 		cin >> gameMode;
-
 		break;
 	}
 }
